@@ -24,9 +24,9 @@ import SendMessage from './components/SendMessage';
 
 const config = getDefaultConfig({
   appName: 'My RainbowKit App', // CHANGE LATER , store in .env
-  projectId: '6dd15a3684137adf8eb5ed126f061236',  // CHANGE LATER , store in .env
+  projectId: '6dd15a3684137adf8eb5ed126f061236',  // CHANGE LATER , store in .env (if project relies on walletConnect that means mobile wallets)
   chains: [mainnet, polygon, optimism, arbitrum, base, curtis, apeChain],
-  ssr: true, // If your dApp uses server side rendering (SSR)
+  ssr: true, // If your dApp uses server side rendering (SSR) ,application render html on server rather than client.
 });
 
 const queryClient = new QueryClient();
