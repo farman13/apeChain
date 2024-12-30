@@ -1,6 +1,7 @@
-import { useWriteContract } from 'wagmi';
+import { useWaitForTransactionReceipt, useWriteContract } from 'wagmi';
 import paymentAbi from '../ABIs/paymentAbi.json';
 import tokenAbi from '../ABIs/tokenAbi.json';
+import { useEffect } from 'react';
 
 export const usePayments = () => {
 
@@ -8,6 +9,15 @@ export const usePayments = () => {
     const PaymentAbi = paymentAbi.abi;
 
     const { data: hash, writeContractAsync } = useWriteContract();
+    const { data: receipt } = useWaitForTransactionReceipt({ hash });
+
+
+    useEffect(() => {
+        if (receipt) {
+            console.log('Transaction confirmed:', receipt);
+            alert('Transaction completed!');
+        }
+    }, [receipt]);     // get the trnsaction hash form this receipt and store it in db
 
     const sendpayment = async (amount, purpose) => {
         try {

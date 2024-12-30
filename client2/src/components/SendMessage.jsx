@@ -9,7 +9,7 @@ const SendMessage = () => {
     const purposeRef = useRef();
 
     const { isConnected } = useAccount();
-    const { sendpayment } = usePayments();  // Using hook 
+    const { sendpayment } = usePayments(); //Using hook
 
     if (!isConnected) {
         return null;
