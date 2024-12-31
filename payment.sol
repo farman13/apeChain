@@ -15,7 +15,7 @@ contract payment{
     mapping(address => uint256) public ownerPercentages;
     mapping(address => uint256) public ownerBalances;
 
-    event paymentDone(address payer, uint amount,string purpose, uint date);
+    event paymentDone(address indexed payer, uint amount,string purpose, uint date);
      
     struct UserPaymentDetails {
         uint256 amount;
