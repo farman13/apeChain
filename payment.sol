@@ -15,7 +15,7 @@ contract payment{
     mapping(address => uint256) public ownerPercentages;
     mapping(address => uint256) public ownerBalances;
 
-    event paymentDone(address indexed payer, uint amount,string purpose, uint date);
+    event paymentDone(address indexed  payer, uint indexed amount, string purpose, uint date);
      
     struct UserPaymentDetails {
         uint256 amount;
@@ -48,6 +48,7 @@ contract payment{
      
      function processPayment(uint256 amount, string memory purpose) public {
 
+        require(amount > 0, "Amount must be greater than zero");   // added
         apeCoin.transferFrom(msg.sender,address(this), amount);
 
         payments[msg.sender].push(UserPaymentDetails({
@@ -65,6 +66,7 @@ contract payment{
     }
     
      function withdraw() public onlyOwners {
+        
         uint256 balance = ownerBalances[msg.sender];
         require(balance > 0, "No tokens available for withdrawal");
 
@@ -97,4 +99,6 @@ contract payment{
         return payments[user];
     }
 }
-  
+       
+
+//0x6E03e498c79bFFCd4450D634BAccA2a537A30318 - new
